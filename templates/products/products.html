@@ -10,21 +10,29 @@
             margin-left: 10%;
         }
 
-        .post_block {
+        .product_block {
             margin: 20px;
             transition: all, 0.3s;
         }
-        .post_block:hover {
+        .product_block:hover {
             transform: scale(1.1);
+            cursor: pointer;
+        }
+        .product_image {
+            width: 100%;
         }
     </style>
     <div class="products">
         {% for product in products %}
-            <div class="post_block">
+            <div class="product_block">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
+                        <img class="product_image" src="/media/{{ product.image }}" alt="">
                         <h5 class="card-title">{{ product.title }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Price: {{ product.price }}</h6>
+                        {% for hashtag in product.hashtags %}
+                            <p>{{ hashtag.title }}</p>
+                        {% endfor %}
                         <a href="#" class="card-link">More</a>
                     </div>
                 </div>

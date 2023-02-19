@@ -12,7 +12,16 @@ def products_view(request):
         products = Product.objects.all()
 
         context = {
-            'products': products
+            'products': [
+                {
+                    'id': product.id,
+                    'title': product.title,
+                    'price': product.price,
+                    'image': product.image,
+                    'hashtags': product.hashtags.all()
+                }
+                for product in products
+            ]
         }
 
         return render(request, 'products/products.html', context=context)
