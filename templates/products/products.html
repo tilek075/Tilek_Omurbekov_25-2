@@ -1,39 +1,27 @@
 {% extends 'layouts/index.html' %}
+{%  load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'products.css' %}">
+{% endblock %}
 
 {% block content %}
-    <style type="text/css">
-        .products {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            width: 80%;
-            margin-left: 10%;
-        }
-
-        .product_block {
-            margin: 20px;
-            transition: all, 0.3s;
-        }
-        .product_block:hover {
-            transform: scale(1.1);
-            cursor: pointer;
-        }
-        .product_image {
-            width: 100%;
-        }
-    </style>
     <div class="products">
         {% for product in products %}
             <div class="product_block">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <img class="product_image" src="/media/{{ product.image }}" alt="">
+                        {% if product.image %}
+                            <img class="product_image" src="/media/{{ product.image }}" alt="">
+                        {% else %}
+                            <img class='product_image' src="{% static 'img_2.jpg' %}" alt="">
+                        {% endif %}
                         <h5 class="card-title">{{ product.title }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Price: {{ product.price }}</h6>
                         {% for hashtag in product.hashtags %}
                             <p>{{ hashtag.title }}</p>
                         {% endfor %}
-                        <a href="#" class="card-link">More</a>
+                        <a href="/products/{{ product.id }}" class="card-link">More</a>
                     </div>
                 </div>
             </div>
