@@ -23,5 +23,6 @@ class Product(models.Model):
 
 class Review(models.Model):
     text = models.CharField(max_length=455)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='comments')
     created_date = models.DateField(auto_now_add=True)

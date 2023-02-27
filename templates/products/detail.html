@@ -2,12 +2,12 @@
 
 {% block content %}
     <style type="text/css">
-        .post {
+        .product {
             width: 80%;
             margin-left: 10%;
         }
 
-        .post > img {
+        .product > img {
             width: 100%;
         }
 
@@ -37,6 +37,11 @@
         <h5>{{ product.description }}</h5>
         <h6>{{ product.price }}$</h6>
         <h7 class="review_title">Reviews:</h7>
+        <form action="/products/{{ product.id }}/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Add review">
+        </form>
         <div class="reviews">
             {% for review in reviews %}
                 <div class="review_block">
