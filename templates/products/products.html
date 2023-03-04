@@ -1,11 +1,15 @@
 {% extends 'layouts/index.html' %}
-{%  load static %}
+{% load static %}
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'products.css' %}">
 {% endblock %}
 
 {% block content %}
+    <form action="/products/" method="get">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
     <div class="products">
         {% for product in products %}
             <div class="product_block">
@@ -25,6 +29,13 @@
                     </div>
                 </div>
             </div>
+        {% endfor %}
+    </div>
+    <div class="pages">
+        {% for page in pages %}
+            <a href="/products/?page={{ page }}">
+                <button class="page_button">{{ page }}</button>
+            </a>
         {% endfor %}
     </div>
 {% endblock %}
