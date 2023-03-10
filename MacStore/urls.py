@@ -10,22 +10,22 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.urls import include, path
+    1. Import the include function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
 from django.urls import path
-from products.views import main_page_view, products_view, product_detail_view, create_product_view
+from products.views import MainPageCBV, ProductsCBV, product_detail_view, CreateProductCBV
 from users.views import register_view, login_view, logout_view
 from django.conf.urls.static import static
 from MacStore import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_page_view),
-    path('products/', products_view),
+    path('', MainPageCBV.as_view()),
+    path('products/', ProductsCBV.as_view()),
     path('products/<int:id>/', product_detail_view),
-    path('products/create/', create_product_view),
+    path('products/create/', CreateProductCBV.as_view()),
 
     path('users/register/', register_view),
     path('users/login/', login_view),
